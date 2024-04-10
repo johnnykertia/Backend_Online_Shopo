@@ -23,4 +23,7 @@ Route::middleware(['auth'])->group(function () {
         return view('pages.dashboard');
     })->name('home');
     Route::resource('user', UserController::class);
+    Route::resource('category', \App\Http\Controllers\CategoryController::class);
+    Route::resource('product', \App\Http\Controllers\ProductController::class);
+
 });
