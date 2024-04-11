@@ -12,12 +12,44 @@ class CategoryController extends Controller
         return view('pages.category.index', compact('categories'));
     }
 
-    // //create
-    // public function create()
-    // {
-    //     return view('pages.user.create');
-    // }
+    //create
+    public function create()
+    {
+        return view('pages.category.create');
+    }
 
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|max:100'
+        ]);
+
+        $category = \App\Models\Category::create($validated);
+
+        return redirect()->route('category.index')->with('success', 'Successfully added category');
+    }
+
+    public function edit($id){
+        $categories = \App\Models\Category::findOrFail($id);
+        return view('pages.category.edit', compact('categories'));
+    }
+
+    public function update(Request $request, $id){
+        $validated = $request->validate([
+            'name'=> 'required|max:100',
+        ]);
+        $categories = \App\Models\Category::findOrFail($id);
+        $categories->update($validated);
+
+        return redirect()->route('category.index')->with('success', 'Category Successfully Update');
+
+    }
+    public function destroy($id)
+    {
+        $categories = \App\Models\Category::findOrFail($id);
+        $categories->delete();
+        return redirect()->route('category.index')->with('success','Deleted Succesfuly');
+    }
     // //store
     // public function store(Request $request)
     // {
