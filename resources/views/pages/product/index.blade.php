@@ -64,17 +64,23 @@
 
                                                 <td>{{ $product->name }}
                                                 </td>
-                                                 <td>{{ $product->category->name }}
+                                                <td>{{ $product->category->name }}
                                                 </td>
-                                                 <td>{{ $product->price }}
+                                                <td>{{ $product->price }}
                                                 </td>
-                                                 <td>{{ $product->stock }}
+                                                <td>{{ $product->stock }}
                                                 </td>
-                                                 <td>{{ $product->image }}
+                                                <td>
+                                                    @if ($product->image)
+                                                        <img src="{{ asset('' . $product->image) }}" alt=""
+                                                            width="100px" class="img-thumbnail" />
+                                                    @else
+                                                        <span class="badge badge-danger">No Image</span>
+                                                    @endif
                                                 </td>
                                                 <td>{{ $product->created_at }}</td>
                                                 <td>
-                                                    <div class="d-flex justify-content-center">
+                                                    <div class="d-flex justify-content-start">
                                                         <a href='{{ route('product.edit', $product->id) }}'
                                                             class="btn btn-sm btn-info btn-icon">
                                                             <i class="fas fa-edit"></i>
