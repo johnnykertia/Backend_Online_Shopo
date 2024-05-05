@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Products')
+@section('title', 'Product')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -17,8 +17,8 @@
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Products</a></div>
-                    <div class="breadcrumb-item">Products</div>
+                    <div class="breadcrumb-item"><a href="#">Product</a></div>
+                    <div class="breadcrumb-item">All Product</div>
                 </div>
             </div>
             <div class="section-body">
@@ -27,7 +27,9 @@
                         @include('layouts.alert')
                     </div>
                 </div>
-                <h2 class="section-title">Products</h2>
+
+
+
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">
@@ -37,7 +39,7 @@
                                 <div class="float-right">
                                     <form method="GET" action="{{ route('product.index') }}">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search" name="search">
+                                            <input type="text" class="form-control" placeholder="Search" name="name">
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                             </div>
@@ -55,7 +57,6 @@
                                             <th>Category</th>
                                             <th>Price</th>
                                             <th>Stock</th>
-                                            <th>Image</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
@@ -70,17 +71,10 @@
                                                 </td>
                                                 <td>{{ $product->stock }}
                                                 </td>
-                                                <td>
-                                                    @if ($product->image)
-                                                        <img src="{{ asset('' . $product->image) }}" alt=""
-                                                            width="100px" class="img-thumbnail" />
-                                                    @else
-                                                        <span class="badge badge-danger">No Image</span>
-                                                    @endif
-                                                </td>
+
                                                 <td>{{ $product->created_at }}</td>
                                                 <td>
-                                                    <div class="d-flex justify-content-start">
+                                                    <div class="d-flex justify-content-center">
                                                         <a href='{{ route('product.edit', $product->id) }}'
                                                             class="btn btn-sm btn-info btn-icon">
                                                             <i class="fas fa-edit"></i>
